@@ -56,9 +56,9 @@ const Bio = () => {
       <p>
         Written by <strong>{author}</strong> who complains alot and drives way too fast in Chicago, IL.
         {` `}
-        <a href={`https://twitter.com/${social.twitter}`}>
+        {/* <a href={`https://twitter.com/${social.twitter}`}>
           You should not follow him on Twitter
-        </a>
+        </a> */}
       </p>
     </div>
   )
