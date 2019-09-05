@@ -3,7 +3,7 @@ module.exports = {
     title: `Tangled up in Code`,
     author: `Stephen Malito`,
     description: `A Web Development an how to start a cult blog.`,
-    siteUrl: `https://gatsby-starter-blog-demo.netlify.com/`,
+    siteUrl: `http://www.blog.stephenmalito.com/`,
     social: {
       twitter: `smellito`,
     },
@@ -57,13 +57,13 @@ module.exports = {
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
-        name: `Gatsby Starter Blog`,
-        short_name: `GatsbyJS`,
+        name: `Tangled Up In Code`,
+        short_name: `TUIC`,
         start_url: `/`,
         background_color: `#ffffff`,
         theme_color: `#663399`,
         display: `minimal-ui`,
-        icon: `content/assets/gatsby-icon.png`,
+        icon: `content/assets/profile-pic.jpg`,
       },
     },
     `gatsby-plugin-offline`,
