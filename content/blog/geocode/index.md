@@ -18,7 +18,7 @@ My plan was to get the geocoordinates formatted into a JSON objected designed fo
 
 
 ### NodeGeocoder Config
-```
+```javascript
 // Yeah, it's required
 var NodeGeocoder = require("node-geocoder");
 
@@ -44,7 +44,7 @@ If you're using neighborhoods like me, you need to include the city and state. N
 
 
 
-```
+```javascript
 var areaArray = [
     "Rogers Park", 
     "Rogers Park", 
@@ -60,7 +60,7 @@ console.log(addCityState)
 
 
 *Use this in your areaArray*
-```
+```javascript
 [ 'Rogers Park Chicago, IL',
   'Rogers Park Chicago, IL',
   'West Ridge Chicago, IL',
@@ -70,7 +70,7 @@ console.log(addCityState)
 ### Now for the Spicy Meatball
 Lets put this all together and get what we're after! Properly formatted JSON Object I can use with Google MAPS, can I get a Hell YEAH!?
 
-```
+```javascript
 //Here is our array which will actally be used to get geocoordinates
 var areaNameArray = [
   "Rogers Park Chicago,	IL",
