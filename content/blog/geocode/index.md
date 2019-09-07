@@ -1,5 +1,5 @@
 ---
-title: "Stop All The Geocoding"
+title: "Batch Geocoding"
 date: "2019-09-05T22:12:03.284Z"
 description: "A less than perfect approach to solving a geocoding dilemma"
 ---
