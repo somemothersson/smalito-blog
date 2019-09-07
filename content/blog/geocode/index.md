@@ -4,26 +4,27 @@ date: "2019-09-05T22:12:03.284Z"
 description: "A less than perfect approach to solving a geocoding dilemma"
 ---
 
-## Here's a hacky way to get geocodes for places 
+##   Here's a hacky way to get geocodes for places 
 If you're working with multiple locations in Google Maps, you need to use geocodeing aka geocoordinates aka lattitude and longitude. Now don't get all bad lattitude on me, I've got something for you if what you thought was gonna be simple has now turned into a longitude and drawn out process.
 
 You can fight through Google's vast documentation, which when you do figure out; will net you more data than you need for a simple project; or waste your time on [latlong.net]( https://www.latlong.net/) to prepopulate the coordinates one by one. 
 
 My plan was to get the geocoordinates formatted into a JSON objected designed for my specific purpose. I would then populate this to my mongo database, where I would use it to interface with requests from census data on a remote server that together would allow me to have data formated for heatmap generation via google's API.
 
-## You're gonna need:
+### You're gonna need:
 * A Mapquest API Key [Mapquest Developer](https://developer.mapquest.com)
 * NodeGeocoder NPM Package [NodeGeocoder](https://www.npmjs.com/package/node-geocoder)
 
 
 
 ### NodeGeocoder Config
+Let's get our base config setup for NodeGeocoder. Im using Mapquest because I had an API setup for a previous project.
 ```javascript
 // Yeah, it's required
-var NodeGeocoder = require("node-geocoder");
+const NodeGeocoder = require("node-geocoder");
 
 // Setup your options for NodeGeocoder
-var options = {
+const options = {
   provider: "mapquest",
 
   // Optional depending on the providers
@@ -32,27 +33,27 @@ var options = {
   formatter: null // 'gpx', 'string', ...
 };
 
-var geocoder = NodeGeocoder(options);
+const geocoder = NodeGeocoder(options);
 
 
 ```
-### Sweet, now our places
+### Preparing our data
 In my instance, I had 78 neighborhood names in the remote census API and an "areaId", that `they` made up, which I needed to interface with. Being that array indexes start at 0, and my array needed to have it's first entry at 1. I took the dumbguy approach and just added the first entry twice, which I would then delete after the data was populated. I know its a bit hamfisted, but I was pressed for time, gimme a break *jeeze*.
 
-#### SideBar: I did this in a seperate file
+#### SideBar: Format place and state in a seperate file
 If you're using neighborhoods like me, you need to include the city and state. Neighborhood names are too vauge. I preprocessed this by jamming a quick array map in another file with areaArray to add my city and state
 
 
 
 ```javascript
-var areaArray = [
+const areaArray = [
     "Rogers Park", 
     "Rogers Park", 
     "West Ridge", 
     "Uptown"];
-var cityState = " Chicago, IL"
+const cityState = " Chicago, IL"
 
-let addCityState = areaArray.map(neighborhood => {
+const addCityState = areaArray.map(neighborhood => {
     return neighborhood + cityState
 })
 console.log(addCityState)
@@ -68,11 +69,11 @@ console.log(addCityState)
 ```
 
 ### Now for the Spicy Meatball
-Lets put this all together and get what we're after! Properly formatted JSON Object I can use with Google MAPS, can I get a Hell YEAH!?
+Lets put this all together and get what we're after! 
 
 ```javascript
 //Here is our array which will actally be used to get geocoordinates
-var areaNameArray = [
+const areaNameArray = [
   "Rogers Park Chicago,	IL",
   "Rogers Park Chicago,	IL",
   "West Ridge Chicago, IL",
@@ -80,7 +81,7 @@ var areaNameArray = [
 ];
 
 //You may not need this, I did it just for organization and future troubleshooting potential
-var areaArray = [
+const areaArray = [
   "Rogers Park", 
   "Rogers Park", 
   "West Ridge", 
@@ -98,7 +99,8 @@ geocoder.batchGeocode(areaNameArray, (err, results) => {
 ```
 
 
-Output
+`Output:`
+Properly formatted JSON Object I can use with Google MAPS, can I get a Hell YEAH!? 
 ```json
 {"db_area":"0", "db_area_name":"Rogers Park", "lat":"42.010531", "lng":"-87.670748"},
 {"db_area":"1", "db_area_name":"Rogers Park", "lat":"42.010531", "lng":"-87.670748"},
