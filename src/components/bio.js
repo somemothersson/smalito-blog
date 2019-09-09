@@ -54,7 +54,7 @@ const Bio = () => {
         }}
       />
       <p>
-        Written by <strong>{author}</strong> who's mind races almost as fast as he drives Chicago, IL.
+        Written by <strong>{author}</strong> who breaks stuff and then fixes it; in Chicago, IL 
         {` `}
         {/* <a href={`https://twitter.com/${social.twitter}`}>
           You should not follow him on Twitter
