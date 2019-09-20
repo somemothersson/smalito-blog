@@ -5,11 +5,11 @@ description: "A less than perfect approach to solving a geocoding dilemma"
 ---
 
 ##   Here's a hacky way to get geocodes for places 
-If you're working with multiple locations in Google Maps, you need to use geocodeing aka geocoordinates aka lattitude and longitude. Now don't get all bad lattitude on me, I've got something for you if what you thought was gonna be simple has now turned into a longitude and drawn out process.
+If you're working with multiple locations in Google Maps, you need to use geocodeing aka geocoordinates aka lattitude and longitude. Now don't get all bad lattitude on me ;), I've got a quick way to batch geocode "places" for you!
 
-You can fight through Google's vast documentation, which when you do figure out; will net you more data than you need for a simple project; or waste your time on [latlong.net]( https://www.latlong.net/) to prepopulate the coordinates one by one. 
+If you've been searching google and stackoverflow you may quickly become overwhelmed. You can fight through Google's vast documentation, which when you do figure out; will net you more data than you need for a simple project. Or, waste your time on [latlong.net]( https://www.latlong.net/) to retrieve the coordinates one by one. 
 
-My plan was to get the geocoordinates formatted into a JSON objected designed for my specific purpose. I would then populate this to my mongo database, where I would use it to interface with requests from census data on a remote server that together would allow me to have data formated for heatmap generation via google's API.
+My plan was to get the geocoordinates formatted into a JSON objected designed for my specific purpose. I would then populate this to my mongo database, where I would use it to interface with requests from a census data API. Together, this would allow me to have data formated for heatmap generation via google's API.
 
 ### You're gonna need:
 * A Mapquest API Key [Mapquest Developer](https://developer.mapquest.com)
@@ -18,7 +18,7 @@ My plan was to get the geocoordinates formatted into a JSON objected designed fo
 
 
 ### NodeGeocoder Config
-Let's get our base config setup for NodeGeocoder. Im using Mapquest because I had an API setup for a previous project.
+Let's get our base config setup for NodeGeocoder. Im using Mapquest because I had an API Key laying around from a previous project.
 ```javascript
 // Yeah, it's required
 const NodeGeocoder = require("node-geocoder");
@@ -41,7 +41,7 @@ const geocoder = NodeGeocoder(options);
 In my instance, I had 78 neighborhood names in the remote census API and an "areaId", that `they` made up, which I needed to interface with. Being that array indexes start at 0, and my array needed to have it's first entry at 1. I took the dumbguy approach and just added the first entry twice, which I would then delete after the data was populated. I know its a bit hamfisted, but I was pressed for time, gimme a break *jeeze*.
 
 #### SideBar: Format place and state in a seperate file
-If you're using neighborhoods like me, you need to include the city and state. Neighborhood names are too vauge. I preprocessed this by jamming a quick array map in another file with areaArray to add my city and state
+If you're using neighborhoods, like me, you need to include the city and state. Neighborhood names on their own are too vauge. I preprocessed this with a quick array map in another file via areaArray to add my city and state to the neighborhood names I would need to match to via the Census Data API.
 
 
 
@@ -69,7 +69,7 @@ console.log(addCityState)
 ```
 
 ### Now for the Spicy Meatball
-Lets put this all together and get what we're after! 
+Lets put this all together and get our coordinates! 
 
 ```javascript
 //Here is our array which will actally be used to get geocoordinates
@@ -109,7 +109,7 @@ Properly formatted JSON Object I can use with Google MAPS, can I get a Hell YEAH
 ```
 
 #### PHEW
-Now we're cooking with gas. We got output in our console `EXACTLY` the way we want it. So all I did was paste this into Postman and Posted it to my appropriate route. Don't forget to delete that first guy @0 before you upload, and *Ala Kazam Ala Kazoo*
+We got output in our console `EXACTLY` the way we want it. So all I did was paste this into Postman and Posted it to my appropriate route which hit my MongoDB. Don't forget to delete that first line @0 before you upload, and *Ala Kazam Ala Kazoo*
 
 Hope this helps someone, someplace, at sometime.
 

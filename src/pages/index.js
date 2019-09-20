@@ -15,7 +15,7 @@ class BlogIndex extends React.Component {
     const posts = data.allMarkdownRemark.edges
 
     return (
-      <Layout location={this.props.location} title={siteTitle}>
+      <Layout location={this.props.location} title={siteTitle} style={{fontFamily: `font-family: 'Monoton', cursive;`}}>
         <SEO title="All posts" />
         <Bio />
         {posts.map(({ node }) => {

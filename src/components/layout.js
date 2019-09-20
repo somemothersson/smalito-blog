@@ -16,6 +16,7 @@ class Layout extends React.Component {
             ...scale(1.5),
             marginBottom: rhythm(1.5),
             marginTop: 0,
+            
           }}
         >
           <Link
@@ -23,6 +24,7 @@ class Layout extends React.Component {
               boxShadow: `none`,
               textDecoration: `none`,
               color: `inherit`,
+         
             }}
             to={`/`}
           >
@@ -43,6 +45,7 @@ class Layout extends React.Component {
               boxShadow: `none`,
               textDecoration: `none`,
               color: `inherit`,
+              fontFamily: `font-family: 'Monoton', cursive;`
             }}
             to={`/`}
           >
