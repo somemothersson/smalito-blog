@@ -5,7 +5,7 @@ description: "A less than perfect approach to solving a geocoding dilemma"
 ---
 
 ##   Here's a hacky way to get geocodes for places 
-If you're working with multiple locations in Google Maps, you need to use geocodeing aka geocoordinates aka lattitude and longitude. Now don't get all bad lattitude on me ;), I've got a quick way to batch geocode "places" for you!
+If you're working with multiple locations in Google Maps, you need to use geocodeing aka geocoordinates aka lattitude and longitude. Now don't get all bad lattitude on me ;) I've got a quick way to batch geocode "places" for you!
 
 If you've been searching google and stackoverflow you may quickly become overwhelmed. You can fight through Google's vast documentation, which when you do figure out; will net you more data than you need for a simple project. Or, waste your time on [latlong.net]( https://www.latlong.net/) to retrieve the coordinates one by one. 
 
